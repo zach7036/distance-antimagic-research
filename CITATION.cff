@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: Distance-Antimagic Research
+message: Please cite this repository and the relevant manuscript.
+type: software
+authors:
+  - family-names: Waddle
+    given-names: Zach
+repository-code: https://github.com/zach7036/distance-antimagic-research
+version: 1.1.0
+date-released: 2026-08-13
