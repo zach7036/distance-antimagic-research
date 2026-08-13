@@ -1,83 +1,114 @@
 # Distance-Antimagic Research
 
-**Canonical research repository** for Zach Waddle's work on universal distance-antimagic labelings, group-valued obstructions, nonlinear finite-field constructions, and exhaustive computation.
+Research on distance-antimagic graph labelings: universal-labeling structure, group-valued and finite-field constructions, and exhaustive verification through nine vertices.
 
-**Status:** research manuscripts and reproducibility materials; not yet peer reviewed.  
-**Current release:** v1.1.0, August 2026.
+> [!IMPORTANT]
+> This is unrefereed research. The order-nine result has a public computational reproduction package. The broader universal-labeling and finite-field results are author claims whose full manuscripts and verification artifacts are not yet committed here; treat them as theorem candidates until those materials are available and independently reviewed.
 
-## What is here
+## The problem
 
-This project contains three connected but logically distinct research threads.
+Let $G=(V,E)$ be a finite simple graph with $|V|=n$. A bijection
 
-### 1. Universal distance-antimagic labelings
+$$
+f:V\to\{1,2,\ldots,n\}
+$$
 
-The main classification theorem says that for a graph `G` of order `n`, the following are equivalent:
+is **distance antimagic** when the open-neighborhood sums
 
-- every bijection `V(G) -> Z_n` is distance antimagic;
-- every bijection into every abelian group of order `n` is distance antimagic;
-- every two open neighborhoods differ by one deletion and one insertion;
-- `G` is `K_n`, or `n` is even and `G` is a perfect matching.
+$$
+w_f(v)=\sum_{u\in N_G(v)} f(u)
+$$
 
-The same work develops an exact signed-subset-sum theorem for ordinary labels `1,...,n`, yielding a complete cancellation/range/parity test for whether a fixed vertex pair is separated under **every** integer labeling.
+are pairwise distinct. Equal open neighborhoods are an immediate obstruction. Kamatchi and Arumugam conjectured that this is the only obstruction: every graph with pairwise-distinct open neighborhoods should admit a distance-antimagic labeling.
 
-Further consequences include Johnson-graph set-system rigidity, cluster-graph and forest classifications, connected universal-integer families, complementary-neighborhood obstructions, phantom periods in Cayley graphs, and a complete elementary-abelian-2 switching classification.
+## Results at a glance
 
-See [`papers/universal-distance-antimagic/`](papers/universal-distance-antimagic/).
+| Research track | Main result described by the project | Public evidence | Current status |
+|---|---|---|---|
+| Universal labelings | A graph is distance antimagic under **every** labeling into $\mathbb Z_n$—equivalently, into every abelian group of order $n$—exactly when it is $K_n$ or an even-order perfect matching | Summary and theorem ledger in this repository | Full manuscript not yet public here; unrefereed theorem candidate |
+| Nonlinear finite-field constructions | Infinite families of nonlinear group-distance-antimagic labelings on finite-field Cayley graphs, plus a dimension-two obstruction for the full-line construction | Summary in this repository | Full manuscript, certificates, and verification code not yet public here; unrefereed theorem candidate |
+| Exhaustive classification through order 9 | A simple graph on at most nine vertices is distance antimagic iff its open neighborhoods are pairwise distinct | [Dedicated code, manuscript, checksums, and deterministic replay](https://github.com/zach7036/distance-antimagic-order9) | Finite computer-assisted result; independently replayable, not peer reviewed |
 
-### 2. Nonlinear finite-field constructions
+The three tracks are related, but none is a proof of the general Kamatchi-Arumugam conjecture.
 
-For Cayley graphs on the additive group of a finite field, the neighborhood-sum operator
+## 1. Universal-labeling structure
 
-`T_S f(x) = sum_{s in S} f(x+s)`
+The project states that the following are equivalent for a graph $G$ of order $n$:
 
-is treated as a finite-field translation filter. Paired affine lines collapse the nonlinear permutation monomial `x^(2p-1)` to a sparse linearized weight polynomial.
+1. every bijection $V(G)\to\mathbb Z_n$ is distance antimagic;
+2. every bijection from $V(G)$ into every abelian group of order $n$ is distance antimagic;
+3. every two open neighborhoods differ by one deletion and one insertion;
+4. $G\cong K_n$, or $n$ is even and $G$ is a perfect matching.
 
-The resulting constructions give nonlinear group-distance-antimagic labelings even when every additive automorphism labeling is distance magic. The project includes dimension-three, even-dimensional, and odd-dimensional infinite families, together with explicit finite-field certificates and a dimension-two obstruction for the full-line architecture.
+Related claimed results include an exact signed-subset-sum criterion for ordinary labels, Johnson-graph set-system rigidity, structural classifications for several graph classes, complementary-neighborhood obstructions, Cayley-graph phantom periods, and an elementary-abelian-2 switching classification.
 
-See [`papers/nonlinear-finite-field/`](papers/nonlinear-finite-field/).
+See [the Paper 1 index](papers/universal-distance-antimagic/README.md), [the theorem ledger](THEOREM_LEDGER.md), and [current status](STATUS.md).
 
-### 3. Exhaustive verification through order nine
+## 2. Nonlinear finite-field constructions
 
-Every simple graph on at most nine vertices with pairwise distinct open neighborhoods is distance antimagic. At order nine, all 274,668 unlabeled graph classes were classified; all 205,914 eligible classes received explicit independently verified labeling certificates.
+For a Cayley graph on the additive group of a finite field, the neighborhood-sum map is viewed as a translation filter:
 
-The large certificate archive, constructor, independent verifiers, catalogue provenance, and deterministic reproduction workflow remain in the dedicated computational repository:
+$$
+(T_S f)(x)=\sum_{s\in S} f(x+s).
+$$
 
-**https://github.com/zach7036/distance-antimagic-order9**
+The project describes paired-affine-line constructions that send the nonlinear permutation monomial $x^{2p-1}$ to a sparse linearized weight polynomial. The claimed consequences include dimension-three, even-dimensional, and fixed odd-dimensional infinite families, explicit finite-field examples, and an obstruction in dimension two for connection sets built from complete affine $\mathbb F_p$-lines.
 
-See [`papers/order-nine/`](papers/order-nine/) for the research-suite summary.
+The full proof and certificates should be added before these claims are cited as established results. See [the theorem ledger](THEOREM_LEDGER.md) and [current status](STATUS.md).
 
-## Repository guide
+## 3. Exhaustive verification through order nine
+
+The companion repository reports a complete classification of all 274,668 unlabeled simple graphs on nine vertices:
+
+- 205,914 have pairwise-distinct open neighborhoods and received explicit distance-antimagic labeling certificates;
+- 68,754 have repeated open neighborhoods and therefore cannot be distance antimagic;
+- two separate verifiers report zero failures.
+
+The companion repository contains the constructor, independent verifiers, catalogue provenance, expected SHA-256 digests, manuscript, and deterministic reproduction script:
+
+**[zach7036/distance-antimagic-order9](https://github.com/zach7036/distance-antimagic-order9)**
+
+This is a meaningful finite frontier advance. It narrows any possible counterexample to order at least ten, but it does not settle the conjecture in general.
+
+## How to review this work
+
+1. Start with [STATUS.md](STATUS.md) for the evidence available for each research track.
+2. Use [THEOREM_LEDGER.md](THEOREM_LEDGER.md) to separate theorem candidates, computer-assisted results, and open questions.
+3. Reproduce the order-nine computation from its [dedicated repository](https://github.com/zach7036/distance-antimagic-order9).
+4. Consult [LITERATURE_NOTES.md](LITERATURE_NOTES.md) for primary background sources and the limits of the novelty search.
+5. Treat priority as provisional until the full manuscripts receive specialist review and database-level citation checking.
+
+## Repository map
 
 ```text
-papers/
-  universal-distance-antimagic/
-  nonlinear-finite-field/
-  order-nine/
-STATUS.md
-THEOREM_LEDGER.md
-OPEN_PROBLEMS.md
-AI_ASSISTANCE.md
-LITERATURE_NOTES.md
-CITATION.cff
-RELEASE_NOTES.md
+papers/                 Research-track indexes (full Papers 1 and 2 not yet present)
+verification/           Verification status and links
+STATUS.md               Evidence and review status by track
+THEOREM_LEDGER.md       Claimed results and explicit non-claims
+OPEN_PROBLEMS.md        Open directions
+LITERATURE_NOTES.md     Background sources and novelty caveats
+AI_ASSISTANCE.md        AI/computational-assistance disclosure
+CITATION.cff            Repository citation metadata
+RELEASE_NOTES.md        Project notes (no GitHub release is currently published)
 ```
 
-## Scope
+## Scope and non-claims
 
-This repository does **not** claim a solution of the Kamatchi-Arumugam conjecture in general. The order-nine computation advances its finite frontier; the universal-labeling results concern the much stronger all-labelings quantifier; the finite-field work concerns group-valued Cayley labelings.
-
-The fixed-noncyclic-group pair classification is complete for elementary abelian 2-groups but remains open in full generality for groups of exponent greater than two.
-
-## Verification philosophy
-
-Computations are used as regression tests, finite certificates, and falsification tools, not as hidden substitutes for proofs. The project records corrected false starts and narrowed claims explicitly. Where an external theorem is load-bearing, the mathematical literature—not AI output—is the cited source.
-
-No GitHub Actions workflows are used for this research repository.
+- No general solution of the Kamatchi-Arumugam conjecture is claimed.
+- No proof-assistant formalization is available.
+- The fixed noncyclic-group pair problem remains open for groups of exponent greater than two.
+- The even-degree Cayley problem on elementary abelian 2-groups remains open.
+- Priority and novelty remain provisional.
 
 ## AI and computational assistance
 
-Large language models, computer algebra, exhaustive enumeration, SAT/search experiments, and exact verification programs were used during exploration, error detection, proof auditing, and drafting. No AI system is an author. The human author is responsible for all released claims and submissions.
+Large language models, computer algebra, exhaustive enumeration, and search programs were used during exploration, error detection, proof auditing, and drafting. No AI system is an author. The human author is responsible for every released claim and any eventual submission.
 
-## Citation
+## Citation and licensing
 
-See [`CITATION.cff`](CITATION.cff). Priority and novelty remain provisional pending specialist and database-level review.
+Citation metadata is available in [CITATION.cff](CITATION.cff). No license file is currently included, so reuse rights have not yet been granted explicitly.
+
+## Background
+
+The terminology and conjecture originate with Kamatchi and Arumugam's 2013 paper. Group-valued variants were developed by Cichacz, Froncek, Sugeng, and Zhou, and later papers continue to resolve special graph families. See [LITERATURE_NOTES.md](LITERATURE_NOTES.md) for links.
+
