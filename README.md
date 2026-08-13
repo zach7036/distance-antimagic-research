@@ -1,1 +1,1 @@
-# -distance-antimagic-research
+# distance-antimagic-research
