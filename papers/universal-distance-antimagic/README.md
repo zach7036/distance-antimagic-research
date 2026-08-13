@@ -1,7 +1,10 @@
 # Paper 1: Universal Distance-Antimagic Labelings
 
-This directory indexes the universal/group/integer manuscript.
+This directory is currently an index for the universal/group/integer research track; the full manuscript is not yet committed.
 
-The paper proves the cyclic/all-abelian universal classification, a Johnson-graph set-system theorem, the exact signed-sum support theorem and cancellation/range/parity criterion, structural integer-labeling consequences, complementary-neighborhood and phantom-period results, and the elementary-abelian-2 switching classification.
+The project describes a cyclic/all-abelian universal classification, a Johnson-graph set-system theorem, an exact signed-sum support theorem with a cancellation/range/parity criterion, structural integer-labeling consequences, complementary-neighborhood and phantom-period results, and an elementary-abelian-2 switching classification.
 
-See the repository root README, `THEOREM_LEDGER.md`, and `STATUS.md` for theorem scope and current status.
+Until the manuscript and proofs are available here and independently reviewed, these statements should be treated as unrefereed theorem candidates.
+
+See the repository [README](../../README.md), [theorem ledger](../../THEOREM_LEDGER.md), and [status report](../../STATUS.md) for scope and evidence status.
+
